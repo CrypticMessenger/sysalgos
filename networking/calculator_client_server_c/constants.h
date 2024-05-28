@@ -1,0 +1,4 @@
+#define PORT 8080
+#define MAXLINE 1024
+#define MAXCLIENT 10
+#define STACK_SIZE 100

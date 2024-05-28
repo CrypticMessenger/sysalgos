@@ -1,0 +1,8 @@
+client_id:=> 4, query:=> 1 2.7 +, answer:=>3.700000
+client_id:=> 4, query:=> 1 2 3 + +, answer:=>6.000000
+client_id:=> 4, query:=> 1 2   +, answer:=>3.000000
+client_id:=> 4, query:=> 2 4 +, answer:=>6.000000
+client_id:=> 4, query:=> 4 7 +, answer:=>11.000000
+client_id:=> 4, query:=> 4 7 3 + -, answer:=>-6.000000
+client_id:=> 4, query:=> 3 4 +, answer:=>7.000000
+client_id:=> 4, query:=> 3 4 7 + -, answer:=>-8.000000

@@ -4,7 +4,7 @@ const (
 	// Number of queues
 	NUMQUEUES int = 3
 
-	//I/O time
+	//I/O time - same for all jobs
 	IOTIME int = 5
 
 	// Quantum for each queue (same for all queues): amt of time given to the job in Round Robin fashion
@@ -14,13 +14,16 @@ const (
 	ALLOTMENT int = 1
 
 	// boost time: the amount of time after which all jobs are moved to the highest priority queue
-	BOOSTTIME int = 100
+	BOOSTTIME int = 10
 
 	// HIGHEST PRIORITY QUEUE
 	HIGHEST_PRIORITY int = NUMQUEUES - 1
 )
 
 type Job struct {
+	// id
+	id int
+
 	// queue number
 	priority int
 
@@ -47,10 +50,20 @@ type Job struct {
 
 	// first run time (useful for response time calculation)
 	firstRunTime int
+
+	// finish time
+	finishTime int
 }
 
 // create struct for queue
 type Queue struct {
 	// jobs in the queue
-	jobs []Job
+	job_ids []int
+}
+
+type IOQueuePair struct {
+	// job id
+	job_id int
+	// time to end I/O
+	time_to_end_io int
 }

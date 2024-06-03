@@ -1,4 +1,4 @@
-# Map Reduce
+# Map Reduce (See implementation in golang at last)
 
 In 2004, engineers at Google introduced a new paradigm for large-scale
 parallel data processing known as MapReduce (see the original paper
@@ -260,3 +260,9 @@ Here are a few things to consider in your implementation:
   of the MR library to make copies of each of these. Then, when the entire
   mapping and reduction is complete, it is the responsibility of the MR
   library to free everything.
+
+## Implementation details in golang
+
+- **Thread Management** : used semaphores (implemented using channels) to control the number of mappers and reducers running concurrently.
+- **Partitioning and Sorting** : Used a map to store the intermediate key value pairs (key: partition number, values: list of keys(words) mapped to the partition). Used a trie datastructure to store the words and their counts are added to the trie node. Used Mutex locks to ensure that the trie modification is thread safe.
+- **Memory Management** : Used a sync.WaitGroup to ensure that the main function waits for all the mappers and reducers to finish before exiting. Used a sync.Mutex to ensure that the trie is thread safe.

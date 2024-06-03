@@ -33,24 +33,23 @@ var kvlock = sync.RWMutex{}
 var trieMutex = sync.RWMutex{}
 
 func Insert(t *structs.Trie, key string, value int) {
-	trieMutex.Lock()
 	node := t
 	for _, c := range key {
+		trieMutex.Lock()
 		if node.Children == nil {
-			// trieMutex.Lock()
 			node.Children = make(map[rune]*structs.Trie)
-			// trieMutex.Unlock()
 		}
+		trieMutex.Unlock()
 		_, ok := node.Children[c]
+		trieMutex.Lock()
 		if !ok {
-			// trieMutex.Lock()
 			node.Children[c] = &structs.Trie{}
-			// trieMutex.Unlock()
 		}
+		trieMutex.Unlock()
 
 		node = node.Children[c]
 	}
-	// trieMutex.Lock()
+	trieMutex.Lock()
 	node.IsEnd = true
 	node.Value += value
 	trieMutex.Unlock()
